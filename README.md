@@ -102,6 +102,7 @@ Esta separación facilita el mantenimiento del código y permite desarrollar cad
 RoadRulez está disponible para Android a través de Google Play.
 
 Precio: gratuita.
+
 Publicidad: sin anuncios.
 
 # 👨‍💻 Acerca del autor
