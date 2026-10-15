@@ -1,46 +1,122 @@
-# RoadRulez
+🚐 RoadRulez
 
-Una aplicación para saber donde pernoctar 
+Conoce la normativa municipal y viaja con mayor tranquilidad.
 
-# Descripcion
+RoadRulez es una aplicación gratuita para Android diseñada para ayudar a las personas que viajan en autocaravana, caravana o camper a conocer la normativa municipal relacionada con la pernocta en España.
 
-RoadRulez es una aplicación creada por iniciativa propia que tiene como objetivo ayudar a toda la gente que viaja en autocaravana, caravana, camper, etc por toda España y está cansada de exponerse a multas debido a que no conocen la normativa municipal.
+El objetivo del proyecto es facilitar el acceso a información sobre las restricciones municipales y ayudar a los viajeros a tomar decisiones informadas, reduciendo el riesgo de posibles sanciones por desconocimiento de la normativa local.
 
-# Métodología utilizada
+📌 Características principales
+🗺️ Localización municipal: identifica el municipio en el que se encuentra el usuario.
+🌐 Geolocalización online: utiliza la API de Nominatim para obtener información sobre la ubicación actual.
+📍 Localización sin conexión: incorpora un algoritmo del vecino más cercano para estimar el municipio a partir de su proximidad a las geocercas municipales.
+🔄 Sincronización de datos: actualiza la base de datos local a partir de un archivo JSON alojado en un repositorio público.
+📱 Uso gratuito y sin anuncios: la aplicación está concebida para ofrecer una experiencia accesible y sin publicidad.
+📖 Descripción del proyecto
 
-Esta aplicación utiliza como lenguaje Java haciendo uso de Spring Boot como framework para así poder crear la aplicación de manera más rapida y sencilla. En cuanto a la estructura del código se optó por crear distintas clases para poder almacenar los municipios, gestionar la base de datos local (DAO) y sincronizar dicha base con la base de datos externa. En cuanto a la base de datos esta aplicación utiliza una sincronización que se realiza al ejecutar el método onCreate(), es decir, al iniciar la aplicación. Se escogió esta idea debido a que a la hora de actualizar la base de datos lo normal será que las leyes cambien en un tiempo determinado mayor a un día. No obstante, se baraja a opción de agregar una opción en el menú principal con el objetivo de que el propio usuario pueda realizar dicha comprobación por su cuenta. La base de datos externa está formada por un archivo JSON ubicado en un directorio público (https://github.com/LaliCuadora/RoadRulez_Data). Se optó por esta medida debido al presupuesto ajustado ya que la aplicación es gratis y sin anuncios por lo que no se obtendrá ningún beneficio con el que poder mantener dichos servidores aunque no se descarta implementar dicha medida en un futuro junto a una conexión ssh para evitar ataques MitM (Man in the middle). En cuanto a la gestión de la ubicación, se ha creado un método con el objetivo de poder obtener el municipio actual a través de Nominatim API con la que si el usuario tiene internet la ubicación será precisa. Para poder extender la usabilidad del programa se añadió además una geolocalización basandose en el algoritmo del vecino más cercano con el objetivo de conocer de manera aproximada el municipio actual mediante su cercanía al geofencer de dicho municipio. En este caso se informa al usuario de que no se tiene conexión y que se está utilizando una búsqueda del municipio mucho menos precisa incitándole a verificar correctamente el municipio en el que se encuentra.
+RoadRulez nace como un proyecto personal con el propósito de desarrollar una herramienta útil para la comunidad de viajeros en vehículos vivienda.
 
-# Estructura de la aplicación
+La normativa que regula la pernocta puede variar entre municipios, lo que dificulta conocer las restricciones aplicables en cada lugar. Por ello, la aplicación busca centralizar la información disponible y facilitar su consulta desde un dispositivo Android.
 
-La aplicación cuenta con una estructura formada por 3 directorios principales:
-        
-### app: 
+Además de su utilidad práctica, el proyecto constituye una oportunidad para aprender y aplicar conceptos de desarrollo móvil, persistencia de datos, consumo de API REST, sincronización de información y geolocalización.
 
-Almacena todo el código fuente de la aplicación y su estructura se basa a su vez en 3 directorios:
+🛠️ Tecnologías y metodología
 
-### data 
+El proyecto utiliza Java como lenguaje de programación y Spring Boot como framework para las funcionalidades desarrolladas con esta tecnología.
 
-Utilizado para toda la gestión de la información y base de datos
+La arquitectura se organiza en diferentes componentes, separando las responsabilidades relacionadas con la gestión de datos, la localización y la interfaz de usuario.
 
-### Geofencing
+Gestión de datos
 
-Gestiona el cambio de municipios asignando un diámetro establecido para poder ubicar el municipio en el caso de que no haya conexión
+La aplicación dispone de una base de datos local para almacenar la información municipal y permitir su consulta sin depender continuamente de una conexión a Internet.
 
-### UI
+La gestión de los datos se organiza mediante componentes específicos:
 
-Apartado visual de la aplicación tanto para las propias interfaces como el diseño del as ventanas emergentes y notificaciones
+Modelos de datos: representan la información de los municipios.
+DAO (Data Access Object): gestionan el acceso y las operaciones sobre la base de datos local.
+Sincronización: obtiene los datos de la fuente externa y actualiza la información almacenada en el dispositivo.
 
+La fuente de datos externa consiste en un archivo JSON alojado en el siguiente repositorio:
 
-# Descargas
+🔗 RoadRulez_Data — Repositorio de datos
 
-Esta disponible en android (PlayStore) y es completamente gratuita y SIN anuncios
+Se ha elegido esta solución para mantener los costes de infraestructura reducidos, ya que RoadRulez es un proyecto gratuito y sin anuncios. De esta manera, se evita depender inicialmente de un servidor propio para distribuir los datos.
 
-# Acerca del autor
+Sincronización de la base de datos
 
-Esta aplicación ha sido creada por un estudiante en Ingeniería informática de la Universidad de Granada por cuenta propia con el objetivo de aprender como funciona realmente el desarrollo de una aplicación desde cero. 
+La sincronización se ejecuta durante el proceso de inicialización de la aplicación, mediante el método onCreate() correspondiente al componente encargado de esta tarea.
 
+Esta estrategia parte de la idea de que los cambios en la normativa municipal no suelen requerir una actualización continua a intervalos de pocas horas. No obstante, la frecuencia real de los cambios puede variar según el municipio.
 
-# Legal
+Como posible mejora futura, se contempla incorporar una opción en el menú principal que permita al usuario comprobar manualmente si existen actualizaciones disponibles.
 
-Esta aplicación no tiene ningún respaldo de ninguna organización gubernamental ni ayuntamiento por lo que se aconseja verificar la normativa del municipio para evitar posibles sanciones.
+También se considera la posibilidad de evolucionar hacia una infraestructura propia para gestionar la distribución y actualización de los datos, incorporando medidas de seguridad adicionales cuando resulte necesario.
 
+Geolocalización online y offline
+
+RoadRulez contempla dos mecanismos complementarios para determinar el municipio en el que se encuentra el usuario.
+
+1. Geolocalización online
+
+Cuando existe conexión a Internet, la aplicación utiliza la API de Nominatim para obtener información geográfica a partir de la ubicación disponible.
+
+Este método permite identificar el municipio mediante un servicio de geocodificación inversa, aunque su precisión depende de la ubicación proporcionada y de los datos cartográficos disponibles.
+
+2. Geolocalización offline
+
+Cuando no hay conexión a Internet, la aplicación recurre a un algoritmo basado en el vecino más cercano.
+
+Este algoritmo compara la posición del usuario con las geocercas municipales disponibles localmente para estimar el municipio más próximo.
+
+Al tratarse de una aproximación, su resultado puede ser menos preciso que el obtenido mediante el servicio online. Por ello, la aplicación informa al usuario de que está utilizando este método y recomienda comprobar el municipio identificado antes de consultar su normativa.
+
+📂 Estructura del proyecto
+
+El código fuente se organiza en tres directorios principales dentro de app/:
+
+app/
+├── data/
+├── Geofencing/
+└── UI/
+
+data/
+
+Contiene los componentes relacionados con la gestión de la información, los modelos de datos, el acceso a la base de datos local y la sincronización con la fuente externa.
+
+Geofencing/
+
+Agrupa la lógica relacionada con la localización municipal sin conexión. Utiliza las geocercas disponibles y un algoritmo del vecino más cercano para estimar el municipio correspondiente a la posición del usuario.
+
+UI/
+
+Contiene los elementos de la interfaz de usuario, incluyendo las pantallas principales, las ventanas emergentes y las notificaciones.
+
+Esta separación facilita el mantenimiento del código y permite desarrollar cada área de la aplicación de forma más organizada.
+
+📥 Descarga
+
+RoadRulez está disponible para Android a través de Google Play.
+
+Precio: gratuita.
+Publicidad: sin anuncios.
+
+🔗 Descargar RoadRulez en Google Play
+
+Nota: el enlace anterior dirige a Google Play de forma general. Sustitúyelo por el enlace directo a la ficha de RoadRulez para facilitar la descarga.
+👨‍💻 Acerca del autor
+
+RoadRulez es un proyecto desarrollado de manera independiente por un estudiante de Ingeniería Informática de la Universidad de Granada.
+
+Nace con la intención de aprender cómo se desarrolla una aplicación desde cero, desde el diseño de su arquitectura hasta la implementación de funcionalidades reales, la gestión de datos y la experiencia de usuario.
+
+El proyecto combina el aprendizaje técnico con el desarrollo de una herramienta que busca aportar valor a la comunidad de personas que viajan en vehículos vivienda.
+
+⚖️ Aviso legal
+
+RoadRulez es un proyecto independiente y no está afiliado, respaldado ni avalado por ningún organismo gubernamental ni ayuntamiento.
+
+La información proporcionada por la aplicación tiene carácter orientativo y no constituye asesoramiento jurídico ni garantiza que una determinada conducta esté permitida en un municipio concreto.
+
+La normativa puede cambiar con el tiempo y su aplicación depende de las disposiciones vigentes y de las circunstancias específicas de cada lugar. Por este motivo, se recomienda consultar las ordenanzas municipales y las fuentes oficiales correspondientes antes de pernoctar.
+
+El uso de RoadRulez no exime al usuario de su responsabilidad de conocer y cumplir la normativa aplicable.
