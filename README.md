@@ -7,12 +7,13 @@ RoadRulez es una aplicación gratuita para Android diseñada para ayudar a las p
 El objetivo del proyecto es facilitar el acceso a información sobre las restricciones municipales y ayudar a los viajeros a tomar decisiones informadas, reduciendo el riesgo de posibles sanciones por desconocimiento de la normativa local.
 
 # 📌 Características principales
-🗺️ Localización municipal: identifica el municipio en el que se encuentra el usuario.
-🌐 Geolocalización online: utiliza la API de Nominatim para obtener información sobre la ubicación actual.
-📍 Localización sin conexión: incorpora un algoritmo del vecino más cercano para estimar el municipio a partir de su proximidad a las geocercas municipales.
-🔄 Sincronización de datos: actualiza la base de datos local a partir de un archivo JSON alojado en un repositorio público.
-📱 Uso gratuito y sin anuncios: la aplicación está concebida para ofrecer una experiencia accesible y sin publicidad.
-📖 Descripción del proyecto
+* 🗺️ Localización municipal: identifica el municipio en el que se encuentra el usuario.  
+* 🌐 Geolocalización online: utiliza la API de Nominatim para obtener información sobre la ubicación actual.   
+* 📍 Localización sin conexión: incorpora el algoritmo del vecino más cercano para estimar el municipio a partir de su proximidad a los geofencers municipales.  
+* 🔄 Sincronización de datos: actualiza la base de datos local a partir de un archivo JSON alojado en un repositorio público.  
+* 📱 Uso gratuito y sin anuncios: la aplicación está concebida para ofrecer una experiencia accesible y sin publicidad.  
+* 📖 Descripción del proyecto
+  
 
 RoadRulez nace como un proyecto personal con el propósito de desarrollar una herramienta útil para la comunidad de viajeros en vehículos vivienda.
 
