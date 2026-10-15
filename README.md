@@ -18,7 +18,7 @@ La aplicación cuenta con una estructura formada por 3 directorios principales:
 
 Almacena todo el código fuente de la aplicación y su estructura se basa a su vez en 3 directorios:
 
-#### data 
+### data 
 
 Utilizado para toda la gestión de la información y base de datos
 
